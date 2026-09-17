@@ -2,25 +2,25 @@
 {
     internal class Program
     {
-        // Define a delegate type
-        public delegate void MyDelegate(string message);
-
         static void Main(string[] args)
         {
-            //add a reference to the method that matches the delegate signature
-            MyDelegate myDelegate = x => Console.WriteLine(x);
+            Action<int> myDelegate;
 
-            //multicast delegate: add another method to the invocation list
+            //Assign a lambda that matches Action<int>: receives int and returns void
+            myDelegate = x => Console.WriteLine(x * 2);
+
+            //add another method to the invocation list
             myDelegate += MyMethod;
 
             // Invoke the delegate
             //it invocate the methods in the invocation list in the order they were added
-            myDelegate("Hello, World!");
+            myDelegate(5);
         }
 
-        private static void MyMethod(string message)
+        private static void MyMethod(int num)
         {
-            Console.WriteLine(message + " (from MyMethod)");
+            num = num * 5;
+            Console.WriteLine(" (from MyMethod) " + num);
         }
     }
 }
