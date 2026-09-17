@@ -4,23 +4,23 @@
     {
         static void Main(string[] args)
         {
-            Action<int> myDelegate;
+            Func<int, int> myDelegate;
 
             //Assign a lambda that matches Action<int>: receives int and returns void
-            myDelegate = x => Console.WriteLine(x * 2);
-
-            //add another method to the invocation list
-            myDelegate += MyMethod;
+            myDelegate = x =>
+            {
+                return x * 2;
+            };
 
             // Invoke the delegate
             //it invocate the methods in the invocation list in the order they were added
-            myDelegate(5);
+            Console.WriteLine(myDelegate(10));
         }
 
-        private static void MyMethod(int num)
+        private static int MyMethod(int num)
         {
-            num = num * 5;
-            Console.WriteLine(" (from MyMethod) " + num);
+            Console.WriteLine("Second function");
+            return num = num * 5;
         }
     }
 }
