@@ -4,23 +4,23 @@
     {
         static void Main(string[] args)
         {
-            Func<int, int> myDelegate;
+            Predicate<int> myDelegateIsEven;
 
             //Assign a lambda that matches Action<int>: receives int and returns void
-            myDelegate = x =>
+            myDelegateIsEven = x =>
             {
-                return x * 2;
+                return x % 2 == 0;
             };
 
             // Invoke the delegate
             //it invocate the methods in the invocation list in the order they were added
-            Console.WriteLine(myDelegate(10));
+            Console.WriteLine(myDelegateIsEven(9));
         }
 
-        private static int MyMethod(int num)
+        private static bool MyMethod(int num)
         {
             Console.WriteLine("Second function");
-            return num = num * 5;
+            return num % 2 == 0;
         }
     }
 }
